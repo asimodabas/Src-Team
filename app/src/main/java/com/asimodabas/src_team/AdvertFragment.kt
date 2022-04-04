@@ -55,10 +55,32 @@ class AdvertFragment : Fragment() {
                 editTextTextPersonName5.text.toString() != "" &&
                 editTextTextPersonName6.text.toString() != ""
             ) {
-                firebaseSaverSearch()
+                auth.currentUser?.let {
 
-                val action = AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
-                findNavController().navigate(action)
+                    val address = editTextTextPersonName2.text.toString()
+                    val clock = editTextTextPersonName4.text.toString()
+                    val Activtiydate = editTextTextPersonName3.text.toString()
+                    val SearchActivity = editTextTextPersonName5.text.toString()
+                    val Notes = editTextTextPersonName6.text.toString()
+
+                    val dataMap = HashMap<String, Any>()
+
+                    dataMap.put("Adres", address)
+                    dataMap.put("Clock", clock)
+                    dataMap.put("Activtiydate", Activtiydate)
+                    dataMap.put("SearchActivity", SearchActivity)
+                    dataMap.put("Notes", Notes)
+
+                    firestore.collection("Search").add(dataMap).addOnSuccessListener {
+
+                        val action = AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
+                        findNavController().navigate(action)
+
+                    }.addOnFailureListener {
+                        Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+                    }
+                }
+
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -88,38 +110,6 @@ class AdvertFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun firebaseSaverSearch() {
 
-        val user = auth.currentUser
-        user?.let {
-
-            val address = editTextTextPersonName2.text.toString()
-            val clock = editTextTextPersonName4.text.toString()
-            val Activtiydate = editTextTextPersonName3.text.toString()
-            val SearchActivity = editTextTextPersonName5.text.toString()
-            val Notes = editTextTextPersonName6.text.toString()
-
-            val dataMap = HashMap<String, Any>()
-
-            dataMap.put("adres", address)
-            dataMap.put("clock", clock)
-            dataMap.put("Activtiydate", Activtiydate)
-            dataMap.put("SearchActivity", SearchActivity)
-            dataMap.put("Notes", Notes)
-
-            firestore.collection("Search").add(dataMap).addOnSuccessListener {
-
-                editTextTextPersonName2.setText("")
-                editTextTextPersonName4.setText("")
-                editTextTextPersonName6.setText("")
-                editTextTextPersonName3.setText("")
-                editTextTextPersonName5.setText("")
-                radioGroup.clearCheck()
-
-            }.addOnFailureListener {
-                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 
 }

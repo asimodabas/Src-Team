@@ -53,9 +53,9 @@
             android:layout_height="wrap_content"
             android:text="Tarih"
             android:textColor="#000000"
-            app:layout_constraintEnd_toEndOf="@+id/gendertextView"
+            app:layout_constraintEnd_toEndOf="@+id/notetextView"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/gendertextView"
+            app:layout_constraintStart_toStartOf="@+id/notetextView"
             app:layout_constraintTop_toTopOf="@+id/hourTextView" />
 
         <TextView
@@ -70,11 +70,11 @@
             app:layout_constraintTop_toTopOf="@+id/imageViewrcyc" />
 
         <TextView
-            android:id="@+id/gendertextView"
+            android:id="@+id/notetextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="Cinsiyet"
+            android:text="Not"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/activtyText"
             app:layout_constraintStart_toEndOf="@+id/activtyText"

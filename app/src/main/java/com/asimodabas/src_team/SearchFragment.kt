@@ -11,12 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SearchFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
+    private lateinit var firestore: FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,7 @@ class SearchFragment : Fragment() {
         setHasOptionsMenu(true)
 
         auth = Firebase.auth
-        db = Firebase.firestore
+        firestore = Firebase.firestore
 
     }
 
@@ -35,6 +36,33 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        firestore.collection("Search").orderBy("date",Query.Direction.ASCENDING).addSnapshotListener { value, error ->
+            if(error!=null){
+                Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_SHORT).show()
+            }else{
+                if(value!=null){
+                    if (value.isEmpty){
+                        Toast.makeText(requireContext(),"Hata",Toast.LENGTH_SHORT).show()
+                    }else{
+
+                        val documents = value.documents
+                        for (document in documents){
+                            val adres = document.get("adres") as String
+                            println(adres)
+                        }
+
+                    }
+                }
+            }
+        }
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

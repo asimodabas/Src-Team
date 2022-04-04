@@ -50,15 +50,13 @@ class CreateFragment : Fragment() {
                 emailEditText.text.toString() != "" &&
                 passwordEditText.text.toString() != ""
             ) {
-                firebaseSaver()
 
                 auth.createUserWithEmailAndPassword(
                     emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 ).addOnSuccessListener {
 
-                    val action = CreateFragmentDirections.actionCreateFragmentToSecondFragment()
-                    findNavController().navigate(action)
+                    firebaseSaver()
 
                 }.addOnFailureListener {
                     Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
@@ -99,6 +97,9 @@ class CreateFragment : Fragment() {
                 emailEditText.setText("")
                 passwordEditText.setText("")
                 radioGroup.clearCheck()
+
+                val action = CreateFragmentDirections.actionCreateFragmentToSecondFragment()
+                findNavController().navigate(action)
 
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
