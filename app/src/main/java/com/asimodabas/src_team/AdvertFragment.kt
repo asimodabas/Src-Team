@@ -77,7 +77,8 @@ class AdvertFragment : Fragment() {
                         findNavController().navigate(action)
 
                     }.addOnFailureListener {
-                        Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
+                            .show()
                     }
                 }
 
@@ -109,7 +110,6 @@ class AdvertFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }

@@ -41,7 +41,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+/*
         firestore.collection("Search").orderBy("date",Query.Direction.ASCENDING).addSnapshotListener { value, error ->
             if(error!=null){
                 Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_SHORT).show()
@@ -61,7 +61,7 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-
+ */
 
     }
 
