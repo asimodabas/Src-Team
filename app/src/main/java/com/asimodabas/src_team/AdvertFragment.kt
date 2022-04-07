@@ -73,6 +73,12 @@ class AdvertFragment : Fragment() {
 
                     firestore.collection("Search").add(dataMap).addOnSuccessListener {
 
+                        editTextTextPersonName2.setText("")
+                        editTextTextPersonName4.setText("")
+                        editTextTextPersonName3.setText("")
+                        editTextTextPersonName5.setText("")
+                        editTextTextPersonName6.setText("")
+
                         val action = AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
                         findNavController().navigate(action)
 
