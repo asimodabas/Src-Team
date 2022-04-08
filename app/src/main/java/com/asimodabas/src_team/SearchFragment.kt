@@ -41,28 +41,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-/*
-        firestore.collection("Search").orderBy("date",Query.Direction.ASCENDING).addSnapshotListener { value, error ->
-            if(error!=null){
-                Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_SHORT).show()
-            }else{
-                if(value!=null){
-                    if (value.isEmpty){
-                        Toast.makeText(requireContext(),"Hata",Toast.LENGTH_SHORT).show()
-                    }else{
-
-                        val documents = value.documents
-                        for (document in documents){
-                            val adres = document.get("adres") as String
-                            println(adres)
-                        }
-
-                    }
-                }
-            }
-        }
- */
-
+        getData()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -77,5 +56,35 @@ class SearchFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+    fun getData() {
+        firestore.collection("Search").addSnapshotListener { value, error ->
+                if (error != null) {
+                    Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    if (value != null) {
+                        if (value.isEmpty) {
+                            Toast.makeText(requireContext(), "Hata", Toast.LENGTH_SHORT).show()
+                        } else {
+
+                            val documents = value.documents
+                            for (document in documents) {
+                                val address = document.get("Adres") as String
+                                val clock = document.get("Clock") as String
+                                val Activtiydate = document.get("Activtiydate") as String
+                                val SearchActivity = document.get("SearchActivity") as String
+                                val Notes = document.get("Notes") as String
+
+
+                            }
+
+                        }
+                    }
+                }
+            }
+    }
+
 
 }
