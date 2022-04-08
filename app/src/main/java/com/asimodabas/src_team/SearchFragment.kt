@@ -6,18 +6,24 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var adapter: SearchRecyclerAdapter
+    private var searchs = arrayListOf<SrcSearch>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +46,10 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter = SearchRecyclerAdapter()
+        searchRecycler.adapter = adapter
+        searchRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         getData()
     }
@@ -70,6 +80,9 @@ class SearchFragment : Fragment() {
                         } else {
 
                             val documents = value.documents
+
+                            searchs.clear()
+
                             for (document in documents) {
                                 val address = document.get("Adres") as String
                                 val clock = document.get("Clock") as String
@@ -77,6 +90,10 @@ class SearchFragment : Fragment() {
                                 val SearchActivity = document.get("SearchActivity") as String
                                 val Notes = document.get("Notes") as String
 
+                                val searcher = SrcSearch(SearchActivity,clock,Activtiydate,address,Notes)
+
+                                searchs.add(searcher)
+                                adapter.searchs = searchs
 
                             }
 
