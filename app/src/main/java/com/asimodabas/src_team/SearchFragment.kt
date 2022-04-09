@@ -51,6 +51,8 @@ class SearchFragment : Fragment() {
         searchRecycler.adapter = adapter
         searchRecycler.layoutManager = LinearLayoutManager(requireContext())
 
+        swipeRefresh()
+
         getData()
     }
 
@@ -76,7 +78,7 @@ class SearchFragment : Fragment() {
                 } else {
                     if (value != null) {
                         if (value.isEmpty) {
-                            Toast.makeText(requireContext(), "Hata", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Kayıt Bulunamadı", Toast.LENGTH_SHORT).show()
                         } else {
 
                             val documents = value.documents
@@ -101,6 +103,14 @@ class SearchFragment : Fragment() {
                     }
                 }
             }
+    }
+
+    fun swipeRefresh(){
+        swipeToRefresh.setOnRefreshListener {
+            Toast.makeText(requireContext(),"Sayfa Yenilendi",Toast.LENGTH_SHORT).show()
+
+            swipeToRefresh.isRefreshing = false
+        }
     }
 
 
