@@ -72,42 +72,44 @@ class SearchFragment : Fragment() {
 
     fun getData() {
         firestore.collection("Search").addSnapshotListener { value, error ->
-                if (error != null) {
-                    Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    if (value != null) {
-                        if (value.isEmpty) {
-                            Toast.makeText(requireContext(), "Kayıt Bulunamadı", Toast.LENGTH_SHORT).show()
-                        } else {
+            if (error != null) {
+                Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                if (value != null) {
+                    if (value.isEmpty) {
+                        Toast.makeText(requireContext(), "Kayıt Bulunamadı", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
 
-                            val documents = value.documents
+                        val documents = value.documents
 
-                            searchs.clear()
+                        searchs.clear()
 
-                            for (document in documents) {
-                                val address = document.get("Adres") as String
-                                val clock = document.get("Clock") as String
-                                val Activtiydate = document.get("Activtiydate") as String
-                                val SearchActivity = document.get("SearchActivity") as String
-                                val Notes = document.get("Notes") as String
+                        for (document in documents) {
+                            val address = document.get("Adres") as String
+                            val clock = document.get("Clock") as String
+                            val Activtiydate = document.get("Activtiydate") as String
+                            val SearchActivity = document.get("SearchActivity") as String
+                            val Notes = document.get("Notes") as String
 
-                                val searcher = SrcSearch(SearchActivity,clock,Activtiydate,address,Notes)
+                            val searcher =
+                                SrcSearch(SearchActivity, clock, Activtiydate, address, Notes)
 
-                                searchs.add(searcher)
-                                adapter.searchs = searchs
-
-                            }
+                            searchs.add(searcher)
+                            adapter.searchs = searchs
 
                         }
+
                     }
                 }
             }
+        }
     }
 
-    fun swipeRefresh(){
+    fun swipeRefresh() {
         swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(requireContext(),"Sayfa Yenilendi",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Sayfa Yenilendi", Toast.LENGTH_SHORT).show()
 
             swipeToRefresh.isRefreshing = false
         }

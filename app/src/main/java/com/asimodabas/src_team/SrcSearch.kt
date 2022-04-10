@@ -5,5 +5,5 @@ data class SrcSearch(
     val clock: String,
     val date: String,
     val address: String,
-    val notes:String
+    val notes: String
 )

@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchHolder>() {
 
-    class SearchHolder(itemView:View):RecyclerView.ViewHolder(itemView){
+    class SearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
 
-    private val diffUtil = object : DiffUtil.ItemCallback<SrcSearch>(){
+    private val diffUtil = object : DiffUtil.ItemCallback<SrcSearch>() {
         override fun areItemsTheSame(oldItem: SrcSearch, newItem: SrcSearch): Boolean {
             return oldItem == newItem
         }
@@ -25,14 +25,14 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchH
 
     }
 
-    private val recyclerListDiffer = AsyncListDiffer(this,diffUtil)
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
 
-    var searchs : List<SrcSearch>
-    get() = recyclerListDiffer.currentList
-    set(value) = recyclerListDiffer.submitList(value)
+    var searchs: List<SrcSearch>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row, parent, false)
         return SearchHolder(view)
     }
 
