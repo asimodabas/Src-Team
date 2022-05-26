@@ -6,6 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/edit_background"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
