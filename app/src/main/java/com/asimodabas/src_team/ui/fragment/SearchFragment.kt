@@ -1,4 +1,4 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asimodabas.src_team.R
+import com.asimodabas.src_team.adapter.SearchRecyclerAdapter
+import com.asimodabas.src_team.model.SrcSearch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -58,12 +58,12 @@ class SearchFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action = SearchFragmentDirections.actionSearchFragmentToProfileFragment()
+            val action =SearchFragmentDirections.actionSearchFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action = SearchFragmentDirections.actionSearchFragmentToLoginFragment()
+            val action =SearchFragmentDirections.actionSearchFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)

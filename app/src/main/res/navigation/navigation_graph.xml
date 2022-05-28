@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.asimodabas.src_team.LoginFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_createFragment"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/createFragment"
-        android:name="com.asimodabas.src_team.CreateFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.CreateFragment"
         android:label="CreateFragment" >
         <action
             android:id="@+id/action_createFragment_to_secondFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.asimodabas.src_team.SecondFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.SecondFragment"
         android:label="SecondFragment" >
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.asimodabas.src_team.SearchFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.SearchFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.asimodabas.src_team.ThirdFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.ThirdFragment"
         android:label="ThirdFragment" >
         <action
             android:id="@+id/action_thirdFragment_to_searchFragment"
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/advertFragment"
-        android:name="com.asimodabas.src_team.AdvertFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.AdvertFragment"
         android:label="AdvertFragment" >
         <action
             android:id="@+id/action_advertFragment_to_searchFragment"
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.asimodabas.src_team.ProfileFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -100,7 +100,7 @@
     </fragment>
     <activity
         android:id="@+id/mapsActivity"
-        android:name="com.asimodabas.src_team.MapsActivity"
+        android:name="com.asimodabas.src_team.ui.activity.MapsActivity"
         android:label="activity_maps"
         tools:layout="@layout/activity_maps" />
 </navigation>

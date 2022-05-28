@@ -1,15 +1,13 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.src_team.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,7 +27,7 @@ class LoginFragment : Fragment() {
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val action = LoginFragmentDirections.actionLoginFragmentToSecondFragment()
+            val action =LoginFragmentDirections.actionLoginFragmentToSecondFragment()
             findNavController().navigate(action)
         }
     }
@@ -62,7 +60,8 @@ class LoginFragment : Fragment() {
                     loginPasswordEditText.text.toString()
                 ).addOnSuccessListener {
 
-                    val action = LoginFragmentDirections.actionLoginFragmentToSecondFragment()
+                    val action =
+                     LoginFragmentDirections.actionLoginFragmentToSecondFragment()
                     findNavController().navigate(action)
 
                 }.addOnFailureListener {
@@ -74,7 +73,8 @@ class LoginFragment : Fragment() {
 
         createButton.setOnClickListener {
 
-            val action = LoginFragmentDirections.actionLoginFragmentToCreateFragment()
+            val action =
+               LoginFragmentDirections.actionLoginFragmentToCreateFragment()
             findNavController().navigate(action)
         }
 

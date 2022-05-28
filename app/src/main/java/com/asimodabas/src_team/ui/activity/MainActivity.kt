@@ -1,11 +1,10 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
+import com.asimodabas.src_team.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

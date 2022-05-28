@@ -1,4 +1,4 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.src_team.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -37,12 +38,12 @@ class ThirdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         searchImageView.setOnClickListener {
-            val action = ThirdFragmentDirections.actionThirdFragmentToAdvertFragment()
+            val action =ThirdFragmentDirections.actionThirdFragmentToAdvertFragment()
             findNavController().navigate(action)
         }
 
         findImageView.setOnClickListener {
-            val action = ThirdFragmentDirections.actionThirdFragmentToSearchFragment()
+            val action =ThirdFragmentDirections.actionThirdFragmentToSearchFragment()
             findNavController().navigate(action)
 
         }
@@ -50,12 +51,12 @@ class ThirdFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action = ThirdFragmentDirections.actionThirdFragmentToProfileFragment()
+            val action =ThirdFragmentDirections.actionThirdFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action = ThirdFragmentDirections.actionThirdFragmentToLoginFragment()
+            val action =ThirdFragmentDirections.actionThirdFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)

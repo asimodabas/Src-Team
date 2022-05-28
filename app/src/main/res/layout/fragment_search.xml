@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background"
-            tools:context=".SearchFragment">
+            tools:context=".ui.fragment.SearchFragment">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searchRecycler"

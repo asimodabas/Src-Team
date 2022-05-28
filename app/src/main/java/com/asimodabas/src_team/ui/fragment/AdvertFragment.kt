@@ -1,13 +1,13 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.fragment
 
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.src_team.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -79,7 +79,8 @@ class AdvertFragment : Fragment() {
                         editTextTextPersonName5.setText("")
                         editTextTextPersonName6.setText("")
 
-                        val action = AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
+                        val action =
+                          AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
                         findNavController().navigate(action)
 
                     }.addOnFailureListener {
@@ -98,7 +99,8 @@ class AdvertFragment : Fragment() {
             }
         }
         locationButton.setOnClickListener {
-            val action = AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
+            val action =
+             AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
             findNavController().navigate(action)
         }
 
@@ -106,12 +108,14 @@ class AdvertFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action = AdvertFragmentDirections.actionAdvertFragmentToProfileFragment()
+            val action =
+                AdvertFragmentDirections.actionAdvertFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action = AdvertFragmentDirections.actionAdvertFragmentToLoginFragment()
+            val action =
+               AdvertFragmentDirections.actionAdvertFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)

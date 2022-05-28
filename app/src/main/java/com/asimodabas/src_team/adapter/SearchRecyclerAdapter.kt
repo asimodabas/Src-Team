@@ -1,4 +1,4 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.asimodabas.src_team.R
+import com.asimodabas.src_team.model.SrcSearch
 
 class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchHolder>() {
 

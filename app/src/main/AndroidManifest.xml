@@ -28,11 +28,11 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.activity.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

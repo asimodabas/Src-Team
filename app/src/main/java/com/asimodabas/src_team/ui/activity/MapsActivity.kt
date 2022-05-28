@@ -1,7 +1,8 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.asimodabas.src_team.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

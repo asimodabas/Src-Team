@@ -1,4 +1,4 @@
-package com.asimodabas.src_team
+package com.asimodabas.src_team.model
 
 data class SrcSearch(
     val activity: String,
