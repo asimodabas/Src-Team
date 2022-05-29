@@ -16,6 +16,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_advert.*
 import kotlinx.android.synthetic.main.fragment_create.*
+import java.util.*
+import kotlin.collections.HashMap
+import kotlin.random.Random
 
 class CreateFragment : Fragment() {
 
@@ -83,6 +86,7 @@ class CreateFragment : Fragment() {
             val date = FieldValue.serverTimestamp()
 
             val dataMap = HashMap<String, Any>()
+            dataMap.put("id", UUID.randomUUID().toString())
             dataMap.put("name", name)
             dataMap.put("surname", surname)
             dataMap.put("email", email!!)
