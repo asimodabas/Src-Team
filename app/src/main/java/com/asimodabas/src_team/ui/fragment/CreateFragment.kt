@@ -1,5 +1,6 @@
 package com.asimodabas.src_team.ui.fragment
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_advert.*
 import kotlinx.android.synthetic.main.fragment_create.*
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.random.Random
 
 class CreateFragment : Fragment() {
 
@@ -74,6 +74,8 @@ class CreateFragment : Fragment() {
 
     }
 
+
+
     fun firebaseSaver() {
 
         val user = auth.currentUser
@@ -86,15 +88,14 @@ class CreateFragment : Fragment() {
             val date = FieldValue.serverTimestamp()
 
             val dataMap = HashMap<String, Any>()
-            dataMap.put("id", UUID.randomUUID().toString())
+            dataMap.put("id", auth.currentUser?.uid.toString())
             dataMap.put("name", name)
             dataMap.put("surname", surname)
-            dataMap.put("email", email!!)
+            dataMap.put("email", email)
             dataMap.put("gender", gender)
             dataMap.put("date", date)
 
-            firestore.collection("Records").add(dataMap).addOnSuccessListener {
-
+            firestore.collection("Records").document(auth.currentUser?.uid!!).set(dataMap).addOnSuccessListener {
                 nameEditText.setText("")
                 surnameEditText.setText("")
                 emailEditText.setText("")
@@ -103,7 +104,6 @@ class CreateFragment : Fragment() {
 
                 val action =CreateFragmentDirections.actionCreateFragmentToSecondFragment()
                 findNavController().navigate(action)
-
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
             }
