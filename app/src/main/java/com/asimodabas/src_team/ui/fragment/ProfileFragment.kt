@@ -12,6 +12,7 @@ import com.asimodabas.src_team.R
 import com.asimodabas.src_team.model.SrcProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -61,9 +62,11 @@ class ProfileFragment : Fragment() {
                         surname = data["surname"] as String,
                         email = data["email"] as String
                     )
-                    nameTextViewXD.setText(user.name)
-                    surnameTextViewXD.setText(user.surname)
-                    emailTextViewXD.setText(user.email)
+
+                    nameTextViewXD.setText("Ad : " + user.name)
+                    surnameTextViewXD.setText("Soyad : " + user.surname)
+                    emailTextViewXD.setText("E-Mail : " + user.email)
+                    dateTextViewXD.setText("Kayıt Tarihi : " + DATE DATE DATE DATE DATE)
                 }
             }.addOnFailureListener { error ->
             }
