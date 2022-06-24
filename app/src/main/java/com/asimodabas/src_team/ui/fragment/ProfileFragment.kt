@@ -18,6 +18,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_create.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import java.sql.Timestamp
 
 class ProfileFragment : Fragment() {
 
@@ -40,6 +41,7 @@ class ProfileFragment : Fragment() {
 
         db = Firebase.firestore
         auth = Firebase.auth
+
         pullUserInfo(auth.currentUser!!.uid)
     }
 
@@ -60,15 +62,15 @@ class ProfileFragment : Fragment() {
                     val user = SrcProfile(
                         name = data["name"] as String,
                         surname = data["surname"] as String,
-                        email = data["email"] as String
+                        email = data["email"] as String,
                     )
 
-                    nameTextViewXD.setText("Ad : " + user.name)
-                    surnameTextViewXD.setText("Soyad : " + user.surname)
-                    emailTextViewXD.setText("E-Mail : " + user.email)
-                    dateTextViewXD.setText("Kayıt Tarihi : " + DATE DATE DATE DATE DATE)
+                    nameTextViewXD.setText(user.name)
+                    surnameTextViewXD.setText(user.surname)
+                    emailTextViewXD.setText(user.email)
                 }
             }.addOnFailureListener { error ->
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
     }
 
