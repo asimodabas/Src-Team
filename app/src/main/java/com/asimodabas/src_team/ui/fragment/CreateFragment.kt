@@ -17,6 +17,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_advert.*
 import kotlinx.android.synthetic.main.fragment_create.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -85,7 +88,9 @@ class CreateFragment : Fragment() {
             val surname = surnameEditText.text.toString()
             val email = emailEditText.text.toString()
             val gender = radioGroup.checkedRadioButtonId
-            val date = FieldValue.serverTimestamp()
+
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
 
             val dataMap = HashMap<String, Any>()
             dataMap.put("id", auth.currentUser?.uid.toString())
@@ -93,7 +98,7 @@ class CreateFragment : Fragment() {
             dataMap.put("surname", surname)
             dataMap.put("email", email)
             dataMap.put("gender", gender)
-            dataMap.put("date", date)
+            dataMap.put("date", currentDate)
 
             firestore.collection("Records").document(auth.currentUser?.uid!!).set(dataMap).addOnSuccessListener {
                 nameEditText.setText("")

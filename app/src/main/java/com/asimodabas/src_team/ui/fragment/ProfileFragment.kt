@@ -10,15 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.model.SrcProfile
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_create.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import java.sql.Timestamp
 
 class ProfileFragment : Fragment() {
 
@@ -63,11 +61,13 @@ class ProfileFragment : Fragment() {
                         name = data["name"] as String,
                         surname = data["surname"] as String,
                         email = data["email"] as String,
+                        date = data["date"] as String
                     )
 
                     nameTextViewXD.setText(user.name)
                     surnameTextViewXD.setText(user.surname)
                     emailTextViewXD.setText(user.email)
+                    dateTextViewXD.setText(user.date)
                 }
             }.addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
