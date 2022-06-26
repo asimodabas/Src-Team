@@ -97,10 +97,22 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <activity
         android:id="@+id/mapsActivity"
         android:name="com.asimodabas.src_team.ui.activity.MapsActivity"
         android:label="activity_maps"
         tools:layout="@layout/activity_maps" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <action
+            android:id="@+id/action_editFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

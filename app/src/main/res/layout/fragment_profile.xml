@@ -51,7 +51,6 @@
             android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/edittext_background"
             android:text="Soyad"
             android:textAlignment="center"
@@ -59,7 +58,6 @@
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/emailTextViewXD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +67,7 @@
             android:id="@+id/nameTextViewXD"
             android:layout_width="375dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/edittext_background"
             android:text="Ad"
             android:textAlignment="center"
@@ -80,7 +78,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/EditProfileTextView" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -93,6 +91,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_lock_24" />
+
+        <TextView
+            android:id="@+id/EditProfileTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="65dp"
+            android:text="Düzenle"
+            android:textAllCaps="true"
+            android:textColor="#050505"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/nameTextViewXD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

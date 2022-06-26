@@ -41,6 +41,12 @@ class ProfileFragment : Fragment() {
         auth = Firebase.auth
 
         pullUserInfo(auth.currentUser!!.uid)
+
+        EditProfileTextView.setOnClickListener {
+            val action =ProfileFragmentDirections.actionProfileFragmentToEditFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,6 +79,5 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
     }
-
 
 }
