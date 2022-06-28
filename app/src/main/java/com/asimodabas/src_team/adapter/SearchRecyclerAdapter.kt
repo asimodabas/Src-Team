@@ -24,7 +24,6 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchH
         override fun areContentsTheSame(oldItem: SrcSearch, newItem: SrcSearch): Boolean {
             return oldItem == newItem
         }
-
     }
 
     private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)

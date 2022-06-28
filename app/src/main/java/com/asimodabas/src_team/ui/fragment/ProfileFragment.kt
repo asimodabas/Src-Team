@@ -9,17 +9,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.asimodabas.src_team.R
+import com.asimodabas.src_team.databinding.FragmentProfileBinding
 import com.asimodabas.src_team.model.SrcProfile
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private var profiles = arrayListOf<SrcProfile>()
@@ -28,8 +29,9 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,11 +44,10 @@ class ProfileFragment : Fragment() {
 
         pullUserInfo(auth.currentUser!!.uid)
 
-        EditProfileTextView.setOnClickListener {
+        binding.EditProfileTextView.setOnClickListener {
             val action =ProfileFragmentDirections.actionProfileFragmentToEditFragment()
             findNavController().navigate(action)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -70,14 +71,13 @@ class ProfileFragment : Fragment() {
                         date = data["date"] as String
                     )
 
-                    nameTextViewXD.setText(user.name)
-                    surnameTextViewXD.setText(user.surname)
-                    emailTextViewXD.setText(user.email)
-                    dateTextViewXD.setText(user.date)
+                    binding.nameTextViewXD.setText(user.name)
+                    binding.surnameTextViewXD.setText(user.surname)
+                    binding.emailTextViewXD.setText(user.email)
+                    binding.dateTextViewXD.setText(user.date)
                 }
             }.addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
     }
-
 }
