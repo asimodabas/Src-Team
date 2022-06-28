@@ -9,14 +9,14 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.asimodabas.src_team.R
+import com.asimodabas.src_team.databinding.FragmentEditBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,11 +25,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.fragment_edit.*
 import java.util.*
 
 class EditFragment : Fragment() {
 
+
+    private var _binding: FragmentEditBinding? = null
+    private val binding get() = _binding!!
     var selectedImage: Uri? = null
     var selectedBitmap: Bitmap? = null
     private lateinit var auth: FirebaseAuth
@@ -49,18 +51,19 @@ class EditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        _binding = FragmentEditBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        uploadImageView.setOnClickListener {
+        binding.uploadImageView.setOnClickListener {
             selected_image()
         }
 
-        uploadButton.setOnClickListener {
+        binding.uploadButton.setOnClickListener {
             upload()
         }
     }
@@ -146,12 +149,12 @@ class EditFragment : Fragment() {
                     if (Build.VERSION.SDK_INT >= 28) {
                         val source = ImageDecoder.createSource(it.contentResolver, selectedImage!!)
                         selectedBitmap = ImageDecoder.decodeBitmap(source)
-                        uploadImageView.setImageBitmap(selectedBitmap)
+                        binding.uploadImageView.setImageBitmap(selectedBitmap)
 
                     } else {
                         selectedBitmap =
                             MediaStore.Images.Media.getBitmap(it.contentResolver, selectedImage)
-                        uploadImageView.setImageBitmap(selectedBitmap)
+                        binding.uploadImageView.setImageBitmap(selectedBitmap)
                     }
                 }
             }

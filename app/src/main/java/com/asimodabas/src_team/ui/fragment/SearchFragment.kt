@@ -1,25 +1,28 @@
 package com.asimodabas.src_team.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.adapter.SearchRecyclerAdapter
+import com.asimodabas.src_team.databinding.FragmentSearchBinding
 import com.asimodabas.src_team.model.SrcSearch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: SearchRecyclerAdapter
@@ -40,16 +43,17 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = SearchRecyclerAdapter()
-        searchRecycler.adapter = adapter
-        searchRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.searchRecycler.adapter = adapter
+        binding.searchRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         swipeRefresh()
 
@@ -108,10 +112,10 @@ class SearchFragment : Fragment() {
     }
 
     fun swipeRefresh() {
-        swipeToRefresh.setOnRefreshListener {
+        binding.swipeToRefresh.setOnRefreshListener {
             Toast.makeText(requireContext(), "Sayfa Yenilendi", Toast.LENGTH_SHORT).show()
 
-            swipeToRefresh.isRefreshing = false
+            binding.swipeToRefresh.isRefreshing = false
         }
     }
 

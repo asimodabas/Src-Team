@@ -1,11 +1,15 @@
 package com.asimodabas.src_team.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.asimodabas.src_team.R
+import com.asimodabas.src_team.databinding.FragmentAdvertBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,12 +17,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.fragment_advert.*
-import kotlinx.android.synthetic.main.fragment_create.*
-
 
 class AdvertFragment : Fragment() {
 
+    private var _binding: FragmentAdvertBinding? = null
+    private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
@@ -39,29 +42,30 @@ class AdvertFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advert, container, false)
+        _binding = FragmentAdvertBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        advSearchButton.setOnClickListener {
+        binding.advSearchButton.setOnClickListener {
 
             if (
-                editTextTextPersonName2.text.toString() != "" &&
-                editTextTextPersonName4.text.toString() != "" &&
-                editTextTextPersonName3.text.toString() != "" &&
-                editTextTextPersonName5.text.toString() != "" &&
-                editTextTextPersonName6.text.toString() != ""
+                binding.editTextTextPersonName2.text.toString() != "" &&
+                binding.editTextTextPersonName4.text.toString() != "" &&
+                binding.editTextTextPersonName3.text.toString() != "" &&
+                binding.editTextTextPersonName5.text.toString() != "" &&
+                binding.editTextTextPersonName6.text.toString() != ""
             ) {
                 auth.currentUser?.let {
 
-                    val address = editTextTextPersonName2.text.toString()
-                    val clock = editTextTextPersonName4.text.toString()
-                    val Activtiydate = editTextTextPersonName3.text.toString()
-                    val SearchActivity = editTextTextPersonName5.text.toString()
-                    val Notes = editTextTextPersonName6.text.toString()
+                    val address = binding.editTextTextPersonName2.text.toString()
+                    val clock = binding.editTextTextPersonName4.text.toString()
+                    val Activtiydate = binding.editTextTextPersonName3.text.toString()
+                    val SearchActivity = binding.editTextTextPersonName5.text.toString()
+                    val Notes = binding.editTextTextPersonName6.text.toString()
 
                     val dataMap = HashMap<String, Any>()
 
@@ -73,11 +77,11 @@ class AdvertFragment : Fragment() {
 
                     firestore.collection("Search").add(dataMap).addOnSuccessListener {
 
-                        editTextTextPersonName2.setText("")
-                        editTextTextPersonName4.setText("")
-                        editTextTextPersonName3.setText("")
-                        editTextTextPersonName5.setText("")
-                        editTextTextPersonName6.setText("")
+                        binding.editTextTextPersonName2.setText("")
+                        binding.editTextTextPersonName4.setText("")
+                        binding.editTextTextPersonName3.setText("")
+                        binding.editTextTextPersonName5.setText("")
+                        binding.editTextTextPersonName6.setText("")
 
                         val action =
                           AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
@@ -98,7 +102,7 @@ class AdvertFragment : Fragment() {
 
             }
         }
-        locationButton.setOnClickListener {
+        binding.locationButton.setOnClickListener {
             val action =
              AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
             findNavController().navigate(action)
