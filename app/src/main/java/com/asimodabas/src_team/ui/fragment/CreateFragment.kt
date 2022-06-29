@@ -28,7 +28,6 @@ class CreateFragment : Fragment() {
 
         auth = Firebase.auth
         firestore = Firebase.firestore
-
     }
 
     override fun onCreateView(
@@ -70,7 +69,6 @@ class CreateFragment : Fragment() {
                 ).show()
             }
         }
-
     }
 
 
@@ -110,5 +108,4 @@ class CreateFragment : Fragment() {
             }
         }
     }
-
 }

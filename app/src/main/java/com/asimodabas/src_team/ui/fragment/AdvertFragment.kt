@@ -30,13 +30,10 @@ class AdvertFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
-
         auth = Firebase.auth
         firestore = Firebase.firestore
         storage = Firebase.storage
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,7 +104,6 @@ class AdvertFragment : Fragment() {
              AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
             findNavController().navigate(action)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -124,6 +120,4 @@ class AdvertFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }

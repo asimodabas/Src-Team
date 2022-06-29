@@ -24,7 +24,6 @@ class SecondFragment : Fragment() {
 
         auth = Firebase.auth
         setHasOptionsMenu(true)
-
     }
 
     override fun onCreateView(
@@ -48,7 +47,6 @@ class SecondFragment : Fragment() {
             val action =SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -63,5 +61,4 @@ class SecondFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

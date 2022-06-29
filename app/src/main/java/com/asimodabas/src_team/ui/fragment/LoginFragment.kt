@@ -22,9 +22,6 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         auth = Firebase.auth
-
-        //Remember username password
-
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val action =LoginFragmentDirections.actionLoginFragmentToSecondFragment()

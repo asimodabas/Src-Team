@@ -24,7 +24,6 @@ class ThirdFragment : Fragment() {
 
         setHasOptionsMenu(true)
         auth = Firebase.auth
-
     }
 
     override fun onCreateView(
@@ -63,5 +62,4 @@ class ThirdFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

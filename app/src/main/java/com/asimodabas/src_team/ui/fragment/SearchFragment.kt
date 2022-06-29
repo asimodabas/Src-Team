@@ -33,7 +33,6 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
-
         auth = Firebase.auth
         firestore = Firebase.firestore
 
@@ -56,7 +55,6 @@ class SearchFragment : Fragment() {
         binding.searchRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         swipeRefresh()
-
         getData()
     }
 
@@ -104,7 +102,6 @@ class SearchFragment : Fragment() {
                             adapter.searchs = searchs
 
                         }
-
                     }
                 }
             }
@@ -118,6 +115,4 @@ class SearchFragment : Fragment() {
             binding.swipeToRefresh.isRefreshing = false
         }
     }
-
-
 }

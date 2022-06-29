@@ -44,7 +44,6 @@ class EditFragment : Fragment() {
         auth = Firebase.auth
         firestore = Firebase.firestore
         storage = Firebase.storage
-
     }
 
     override fun onCreateView(
@@ -103,6 +102,7 @@ class EditFragment : Fragment() {
 
                         val mediaMap = hashMapOf<String, Any>()
 
+                        mediaMap.put("id", auth.currentUser?.uid.toString())
                         mediaMap.put("downloadUrl", downloadUrl)
                         mediaMap.put("date", Timestamp.now())
                         mediaMap.put("userEmail", auth.currentUser!!.email!!)
