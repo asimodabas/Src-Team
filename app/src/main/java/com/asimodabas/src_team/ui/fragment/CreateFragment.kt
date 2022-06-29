@@ -72,7 +72,6 @@ class CreateFragment : Fragment() {
     }
 
 
-
     fun firebaseSaver() {
 
         val user = auth.currentUser
