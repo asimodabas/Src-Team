@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Src-Team</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <string name="gallery_permission">Galeriye gitmek için izin gerekli</string>
+    <string name="give_permission">İzni ver</string>
+    <string name="select_picture">Yüklemek için bir resim seçiniz</string>
+    <string name="password_must_match">Şifre boş bırakılamaz</string>
+    <string name="fill_in_the_blanks">Lütfen boşlukları doldurunuz!</string>
+    <string name="welcome">Giriş Başarılı</string>
+    <string name="changes_saved">Değişiklikler Kaydedildi</string>
+
+
+
 </resources>
