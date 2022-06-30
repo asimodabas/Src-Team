@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentProfileBinding
-import com.asimodabas.src_team.model.SrcImage
 import com.asimodabas.src_team.model.SrcProfile
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProfileFragment : Fragment() {
 
@@ -25,9 +27,6 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private var profiles = arrayListOf<SrcProfile>()
-    private lateinit var imageArrayList: ArrayList<SrcImage>
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,11 +45,10 @@ class ProfileFragment : Fragment() {
         db = Firebase.firestore
         auth = Firebase.auth
 
-        pullUserImage()
         pullUserInfo(auth.currentUser!!.uid)
 
         binding.EditProfileTextView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToEditFragment()
+            val action =ProfileFragmentDirections.actionProfileFragmentToEditFragment()
             findNavController().navigate(action)
         }
     }
@@ -65,51 +63,32 @@ class ProfileFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+
     private fun pullUserInfo(userUid: String) {
-        val documentReference = db.collection("Records").document(userUid).get()
+        val documentReference = db.collection("Users").document(userUid).get()
             .addOnSuccessListener { data ->
                 if (data != null) {
+
                     val user = SrcProfile(
                         name = data["name"] as String,
                         surname = data["surname"] as String,
                         email = data["email"] as String,
-                        date = data["date"] as String,
+                        userUid = data["userUid"] as String,
+                        profileImage = data["profileImage"] as String,
+                        profileImageName = data["profileImageName"] as String,
+                        registrationTime = data["registrationTime"] as Timestamp,
+
                     )
+                    val sdf = SimpleDateFormat("dd/M/yyyy")
+                    val currentDate = sdf.format(Date())
 
                     binding.nameTextViewXD.setText(user.name)
                     binding.surnameTextViewXD.setText(user.surname)
                     binding.emailTextViewXD.setText(user.email)
-                    binding.dateTextViewXD.setText(user.date)
+                    binding.dateTextViewXD.setText(currentDate)
                 }
             }.addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
-            }
-    }
-
-    private fun pullUserImage() {
-        db.collection("UserAvatar").orderBy("date", Query.Direction.DESCENDING)
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    Toast.makeText(requireContext(), "Hata", Toast.LENGTH_LONG).show()
-                } else {
-                    if (value != null) {
-                        if (value.isEmpty) {
-                            Toast.makeText(requireContext(), "Hata", Toast.LENGTH_SHORT).show()
-                        } else {
-
-                            val documents = value.documents
-                            for (document in documents) {
-
-                                val id = document.get("id") as String
-                                val downloadUrl = document.get("downloadUrl") as String
-                                val userEmail = document.get("userEmail") as String
-
-                                println(downloadUrl)
-
-                            }
-                        }
-                    }
-                }
             }
     }
 
