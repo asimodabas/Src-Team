@@ -24,7 +24,7 @@ class LoginFragment : Fragment() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val action =LoginFragmentDirections.actionLoginFragmentToSecondFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToSecondFragment()
             findNavController().navigate(action)
         }
     }
@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
                 ).addOnSuccessListener {
 
                     val action =
-                     LoginFragmentDirections.actionLoginFragmentToSecondFragment()
+                        LoginFragmentDirections.actionLoginFragmentToSecondFragment()
                     findNavController().navigate(action)
 
                 }.addOnFailureListener {
@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
         binding.createButton.setOnClickListener {
 
             val action =
-               LoginFragmentDirections.actionLoginFragmentToCreateFragment()
+                LoginFragmentDirections.actionLoginFragmentToCreateFragment()
             findNavController().navigate(action)
         }
     }

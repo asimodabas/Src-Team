@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
         pullUserInfo(auth.currentUser!!.uid)
 
         binding.EditProfileTextView.setOnClickListener {
-            val action =ProfileFragmentDirections.actionProfileFragmentToEditFragment()
+            val action = ProfileFragmentDirections.actionProfileFragmentToEditFragment()
             findNavController().navigate(action)
         }
     }
@@ -78,7 +78,7 @@ class ProfileFragment : Fragment() {
                         profileImageName = data["profileImageName"] as String,
                         registrationTime = data["registrationTime"] as Timestamp,
 
-                    )
+                        )
                     val sdf = SimpleDateFormat("dd/M/yyyy")
                     val currentDate = sdf.format(Date())
 
