@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.adapter.SearchRecyclerAdapter
 import com.asimodabas.src_team.databinding.FragmentSearchBinding
@@ -73,7 +74,7 @@ class SearchFragment : Fragment() {
 
 
     fun getData() {
-        firestore.collection("Search").addSnapshotListener { value, error ->
+        firestore.collection(Constants.SEARCH).addSnapshotListener { value, error ->
             if (error != null) {
                 Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
