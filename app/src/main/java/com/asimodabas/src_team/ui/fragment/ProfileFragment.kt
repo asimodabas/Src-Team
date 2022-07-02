@@ -6,18 +6,22 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentProfileBinding
 import com.asimodabas.src_team.model.SrcProfile
+import com.asimodabas.src_team.viewmodel.ProfileViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,6 +31,10 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private var userProfileInfo: SrcProfile? = null
+    private lateinit var viewModel: ProfileViewModel
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +48,18 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
+
         setHasOptionsMenu(true)
 
         db = Firebase.firestore
         auth = Firebase.auth
 
-        pullUserInfo(auth.currentUser!!.uid)
+        viewModel.getProfileInfo()
+        getProfileInfo()
 
         binding.EditProfileTextView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToEditFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_profileFragment_to_editFragment)
         }
     }
 
@@ -64,32 +74,49 @@ class ProfileFragment : Fragment() {
     }
 
 
-    private fun pullUserInfo(userUid: String) {
-        val documentReference = db.collection("Users").document(userUid).get()
-            .addOnSuccessListener { data ->
-                if (data != null) {
+    private fun getProfileInfo() {
 
-                    val user = SrcProfile(
-                        name = data["name"] as String,
-                        surname = data["surname"] as String,
-                        email = data["email"] as String,
-                        userUid = data["userUid"] as String,
-                        profileImage = data["profileImage"] as String,
-                        profileImageName = data["profileImageName"] as String,
-                        registrationTime = data["registrationTime"] as Timestamp,
+        viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->
+            dataConfirm?.let { data ->
+                if (data) {
+                    userProfileInfo = viewModel.userInfo
+                    binding.emailTextViewXD.setText(userProfileInfo!!.email)
+                    val name = userProfileInfo!!.name
+                    val surname = userProfileInfo!!.surname
 
-                        )
                     val sdf = SimpleDateFormat("dd/M/yyyy")
                     val currentDate = sdf.format(Date())
 
-                    binding.nameTextViewXD.setText(user.name)
-                    binding.surnameTextViewXD.setText(user.surname)
-                    binding.emailTextViewXD.setText(user.email)
                     binding.dateTextViewXD.setText(currentDate)
+                    binding.nameTextViewXD.text = name
+                    binding.surnameTextViewXD.text = surname
+                    if (userProfileInfo!!.profileImage != null) {
+                        Picasso.get()
+                            .load(userProfileInfo!!.profileImage)
+                            .placeholder(R.drawable.src_logo)
+                            .into(binding.imageView3)
+                    } else {
+                        binding.imageView3.setImageDrawable(
+                            ActivityCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.src_logo
+                            )
+                        )
+                    }
+                } else {
+                    Toast.makeText(requireContext(),"Hata",Toast.LENGTH_LONG).show()
                 }
-            }.addOnFailureListener { error ->
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
