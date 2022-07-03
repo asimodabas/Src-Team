@@ -117,5 +117,13 @@
         <action
             android:id="@+id/action_editFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_updatePasswordFragment"
+            app:destination="@id/updatePasswordFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/updatePasswordFragment"
+        android:name="com.asimodabas.src_team.ui.fragment.UpdatePasswordFragment"
+        android:label="fragment_update_password"
+        tools:layout="@layout/fragment_update_password" />
 </navigation>
