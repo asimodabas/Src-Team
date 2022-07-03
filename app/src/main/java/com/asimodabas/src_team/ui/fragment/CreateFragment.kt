@@ -1,8 +1,9 @@
 package com.asimodabas.src_team.ui.fragment
 
+
 import android.Manifest
 import android.app.Activity
-import android.app.DatePickerDialog
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,11 +17,9 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -30,16 +29,8 @@ import com.asimodabas.Constants.IMAGE_NAME
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentCreateBinding
 import com.asimodabas.src_team.viewmodel.CreateViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.delay
 import java.io.ByteArrayOutputStream
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CreateFragment : Fragment() {
@@ -49,8 +40,8 @@ class CreateFragment : Fragment() {
     private lateinit var viewModel: CreateViewModel
     private var selectedBitmap: Bitmap? = null
     private var selectedUri: Uri? = null
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var permissionLauncher: ActivityResultLauncher<Array<out String>>
     private val neededRuntimePermissions = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -208,8 +199,8 @@ class CreateFragment : Fragment() {
                     }
                 }
             }
-/*
-        permissionLauncher =
+
+         permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
                 permissions.entries.forEach {
                     if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {
@@ -219,12 +210,6 @@ class CreateFragment : Fragment() {
                     }
                 }
             }
-
- */
-
-        val galleryIntent =
-            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        activityResultLauncher.launch(galleryIntent)
     }
 
     private fun makeSmallerBitmap(image: Bitmap, maximumSize: Int): Bitmap {
