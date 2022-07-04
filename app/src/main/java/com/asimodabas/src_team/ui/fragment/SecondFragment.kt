@@ -39,24 +39,24 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button2.setOnClickListener {
-            val action =SecondFragmentDirections.actionSecondFragmentToThirdFragment()
+            val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
 
         binding.button3.setOnClickListener {
-            val action =SecondFragmentDirections.actionSecondFragmentToThirdFragment()
+            val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action =SecondFragmentDirections.actionSecondFragmentToProfileFragment()
+            val action = SecondFragmentDirections.actionSecondFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action =SecondFragmentDirections.actionSecondFragmentToLoginFragment()
+            val action = SecondFragmentDirections.actionSecondFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)

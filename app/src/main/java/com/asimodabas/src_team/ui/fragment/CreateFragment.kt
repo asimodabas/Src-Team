@@ -200,7 +200,7 @@ class CreateFragment : Fragment() {
                 }
             }
 
-         permissionLauncher =
+        permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
                 permissions.entries.forEach {
                     if (it.value && it.key == Manifest.permission.READ_EXTERNAL_STORAGE) {

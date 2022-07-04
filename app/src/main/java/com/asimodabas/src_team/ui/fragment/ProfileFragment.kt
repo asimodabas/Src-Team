@@ -35,7 +35,6 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -104,7 +103,7 @@ class ProfileFragment : Fragment() {
                         )
                     }
                 } else {
-                    Toast.makeText(requireContext(),"Hata",Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Hata", Toast.LENGTH_LONG).show()
                 }
             }
         }

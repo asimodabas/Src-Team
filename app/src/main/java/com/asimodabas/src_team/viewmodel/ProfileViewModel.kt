@@ -9,7 +9,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val auth = Firebase.auth
     private val db = Firebase.firestore

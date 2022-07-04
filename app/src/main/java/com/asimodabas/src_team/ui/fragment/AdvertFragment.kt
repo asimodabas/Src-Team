@@ -81,7 +81,7 @@ class AdvertFragment : Fragment() {
                         binding.editTextTextPersonName6.setText("")
 
                         val action =
-                          AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
+                            AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
                         findNavController().navigate(action)
 
                     }.addOnFailureListener {
@@ -101,7 +101,7 @@ class AdvertFragment : Fragment() {
         }
         binding.locationButton.setOnClickListener {
             val action =
-             AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
+                AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
             findNavController().navigate(action)
         }
     }
@@ -115,7 +115,7 @@ class AdvertFragment : Fragment() {
 
             auth.signOut()
             val action =
-               AdvertFragmentDirections.actionAdvertFragmentToLoginFragment()
+                AdvertFragmentDirections.actionAdvertFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)

@@ -39,12 +39,12 @@ class ThirdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.searchImageView.setOnClickListener {
-            val action =ThirdFragmentDirections.actionThirdFragmentToAdvertFragment()
+            val action = ThirdFragmentDirections.actionThirdFragmentToAdvertFragment()
             findNavController().navigate(action)
         }
 
         binding.findImageView.setOnClickListener {
-            val action =ThirdFragmentDirections.actionThirdFragmentToSearchFragment()
+            val action = ThirdFragmentDirections.actionThirdFragmentToSearchFragment()
             findNavController().navigate(action)
 
         }
@@ -52,12 +52,12 @@ class ThirdFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action =ThirdFragmentDirections.actionThirdFragmentToProfileFragment()
+            val action = ThirdFragmentDirections.actionThirdFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action =ThirdFragmentDirections.actionThirdFragmentToLoginFragment()
+            val action = ThirdFragmentDirections.actionThirdFragmentToLoginFragment()
             findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)
