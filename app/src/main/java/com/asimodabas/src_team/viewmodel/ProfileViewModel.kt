@@ -15,13 +15,9 @@ class ProfileViewModel : ViewModel() {
     private val db = Firebase.firestore
 
     val dataConfirmation = MutableLiveData<Boolean>()
-    var isThereEntry = MutableLiveData<Boolean>()
     lateinit var userInfo: SrcProfile
     val userUid = auth.currentUser?.uid
-    val updatePasswordData = MutableLiveData<Boolean>()
-    val updatePasswordError = MutableLiveData<String>()
     val errorMessage = MutableLiveData<String>()
-    val changesSaved = MutableLiveData<Boolean>()
 
     fun getProfileInfo() {
         pullUserInfo()

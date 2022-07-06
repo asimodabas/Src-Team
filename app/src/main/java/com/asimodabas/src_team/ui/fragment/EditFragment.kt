@@ -43,7 +43,6 @@ import java.util.*
 class EditFragment : Fragment() {
 
 
-
     private var _binding: FragmentEditBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: EditViewModel
@@ -161,7 +160,8 @@ class EditFragment : Fragment() {
                         user.reauthenticate(credential).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 viewModel.deleteAccount()
-                                viewModel.deleteAccountAnimation.observe(viewLifecycleOwner
+                                viewModel.deleteAccountAnimation.observe(
+                                    viewLifecycleOwner
                                 ) {
 
                                 }
