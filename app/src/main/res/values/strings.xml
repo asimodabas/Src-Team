@@ -10,6 +10,14 @@
     <string name="fill_in_the_blanks">Lütfen boşlukları doldurunuz!</string>
     <string name="welcome">Giriş Başarılı</string>
     <string name="changes_saved">Değişiklikler Kaydedildi</string>
-
+    <string name="try_again_later">Daha Sonra Tekrar Deneyiniz.</string>
+    <string name="change_password">Şifreyi Değiştir</string>
+    <string name="change_password_description_text">Lütfen yeni şifrenizi giriniz.</string>
+    <string name="password_changed">Şifre Değişti, Lütfen Tekrar Giriş Yapın.</string>
+    <string name="delete_my_account">Hesabımı Sil</string>
+    <string name="delete_account_confirm">Hesabınızı silmek istediğinizden emin misiniz?</string>
+    <string name="no">Hayır</string>
+    <string name="yes">Evet</string>
+    <string name="deletion_success">Hesap Silme Başarılı</string>
 
 </resources>

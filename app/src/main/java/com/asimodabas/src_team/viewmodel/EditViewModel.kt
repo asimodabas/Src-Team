@@ -34,7 +34,7 @@ class EditViewModel : ViewModel() {
     }
 
     fun updateProfile(
-        userInfo: SrcProfile, name: String, surname: String, birthday: String, selectedImage: Uri?,
+        userInfo: SrcProfile, name: String, surname: String, selectedImage: Uri?,
     ) {
         updateProfileFirebase(userInfo, name, surname, selectedImage)
     }
