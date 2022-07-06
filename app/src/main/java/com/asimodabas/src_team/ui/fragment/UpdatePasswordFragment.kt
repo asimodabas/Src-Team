@@ -23,5 +23,4 @@ class UpdatePasswordFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_update_password, container, false)
     }
 
-
 }

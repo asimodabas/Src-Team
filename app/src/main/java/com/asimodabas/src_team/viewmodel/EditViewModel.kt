@@ -28,7 +28,6 @@ class EditViewModel : ViewModel() {
     val deleteAccountConfirmation = MutableLiveData<Boolean>()
 
 
-
     fun getProfileInfo() {
         pullUserInfo()
     }
