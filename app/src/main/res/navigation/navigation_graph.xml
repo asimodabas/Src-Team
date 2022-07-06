@@ -125,5 +125,9 @@
         android:id="@+id/updatePasswordFragment"
         android:name="com.asimodabas.src_team.ui.fragment.UpdatePasswordFragment"
         android:label="fragment_update_password"
-        tools:layout="@layout/fragment_update_password" />
+        tools:layout="@layout/fragment_update_password" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>
