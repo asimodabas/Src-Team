@@ -64,7 +64,6 @@ class CreateFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity())[CreateViewModel::class.java]
 
-
         binding.imageView4.setOnClickListener {
             if ((ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -255,5 +254,4 @@ class CreateFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

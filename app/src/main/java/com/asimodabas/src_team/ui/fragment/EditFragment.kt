@@ -232,7 +232,6 @@ class EditFragment : Fragment() {
                 )
             findNavController().navigate(action)
         }
-
     }
 
     private fun observeUpdateProfile() {
@@ -375,5 +374,4 @@ class EditFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
