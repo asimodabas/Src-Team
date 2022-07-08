@@ -13,7 +13,6 @@ class UpdatePasswordViewModel : ViewModel() {
     val updatePasswordData = MutableLiveData<Boolean>()
     val updatePasswordError = MutableLiveData<String>()
 
-
     fun updatePassword(newPassword: String) {
         updatePasswordFirebase(newPassword)
     }
