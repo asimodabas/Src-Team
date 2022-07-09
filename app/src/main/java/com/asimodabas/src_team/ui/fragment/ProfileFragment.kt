@@ -72,7 +72,6 @@ class ProfileFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
     private fun getProfileInfo() {
 
         viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->

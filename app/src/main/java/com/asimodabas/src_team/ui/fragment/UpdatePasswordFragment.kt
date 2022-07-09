@@ -95,15 +95,11 @@ class UpdatePasswordFragment : Fragment() {
                         ).show()
                     }
                 }
-
-
             } else {
                 Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
                     .show()
             }
-
         }
-
     }
 
     private fun observeDataSignOut() {
@@ -120,7 +116,6 @@ class UpdatePasswordFragment : Fragment() {
         }
     }
 
-
     private fun checkEmptyView(): Boolean = binding.editTextNewPassword.text.isNotEmpty() &&
             binding.editTextNewPasswordAgain.text.isNotEmpty() && binding.editTextOldPassword.text.isNotEmpty()
 
@@ -128,5 +123,4 @@ class UpdatePasswordFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

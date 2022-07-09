@@ -101,7 +101,6 @@ class SearchFragment : Fragment() {
 
                             searchs.add(searcher)
                             adapter.searchs = searchs
-
                         }
                     }
                 }

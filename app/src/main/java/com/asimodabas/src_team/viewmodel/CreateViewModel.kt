@@ -105,6 +105,4 @@ class CreateViewModel : ViewModel() {
             errorMessage.value = authError.localizedMessage
         }
     }
-
-
 }

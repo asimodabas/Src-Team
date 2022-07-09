@@ -255,7 +255,6 @@ class EditFragment : Fragment() {
     }
 
     private fun getProfileInfo() {
-
         viewModel.dataConfirmation.observe(viewLifecycleOwner) { dataConfirm ->
             dataConfirm?.let { data ->
                 if (data) {

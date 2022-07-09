@@ -189,5 +189,4 @@ class EditViewModel : ViewModel() {
             deleteAccountError.value = true
         }
     }
-
 }

@@ -115,7 +115,6 @@ class CreateFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.select_picture, Toast.LENGTH_SHORT).show()
             }
         }
-
         binding.loginTextView.setOnClickListener {
             findNavController().navigate(R.id.action_createFragment_to_loginFragment)
         }
@@ -226,7 +225,6 @@ class CreateFragment : Fragment() {
             val scaleWidth = height * bitmapRatio
             width = scaleWidth.toInt()
         }
-
         return Bitmap.createScaledBitmap(image, width, height, true)
     }
 

@@ -44,6 +44,4 @@ class ProfileViewModel : ViewModel() {
                 errorMessage.value = error.localizedMessage
             }
     }
-
-
 }
