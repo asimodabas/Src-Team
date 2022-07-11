@@ -247,7 +247,6 @@ class CreateFragment : Fragment() {
                 binding.emailEditText.text.isNotEmpty() &&
                 binding.passwordEditText.text.isNotEmpty()
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

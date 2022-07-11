@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -48,7 +49,7 @@ class LoginFragment : Fragment() {
             ) {
                 Toast.makeText(
                     context,
-                    "Lütfen Src-Team girişi için bilgilerinizi doğru giriniz.",
+                    R.string.enter_the_information_correctly,
                     Toast.LENGTH_LONG
                 ).show()
             } else {

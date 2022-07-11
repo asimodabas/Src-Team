@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentAdvertBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -72,7 +73,7 @@ class AdvertFragment : Fragment() {
                     dataMap.put("SearchActivity", SearchActivity)
                     dataMap.put("Notes", Notes)
 
-                    firestore.collection("Search").add(dataMap).addOnSuccessListener {
+                    firestore.collection(Constants.SEARCH).add(dataMap).addOnSuccessListener {
 
                         binding.editTextTextPersonName2.setText("")
                         binding.editTextTextPersonName4.setText("")
@@ -93,7 +94,7 @@ class AdvertFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Lütfen boşlukları eksiksiz doldurun.",
+                    R.string.blanks_completely,
                     Toast.LENGTH_LONG
                 ).show()
 

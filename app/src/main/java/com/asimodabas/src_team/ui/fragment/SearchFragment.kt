@@ -81,7 +81,10 @@ class SearchFragment : Fragment() {
             } else {
                 if (value != null) {
                     if (value.isEmpty) {
-                        Toast.makeText(requireContext(), "Kayıt Bulunamadı", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            requireContext(), R.string.no_records_found,
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     } else {
 
@@ -110,7 +113,10 @@ class SearchFragment : Fragment() {
 
     fun swipeRefresh() {
         binding.swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(requireContext(), "Sayfa Yenilendi", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(), R.string.page_refreshed,
+                Toast.LENGTH_SHORT
+            ).show()
 
             binding.swipeToRefresh.isRefreshing = false
         }
