@@ -14,6 +14,7 @@ import com.asimodabas.src_team.R
 import com.asimodabas.src_team.adapter.SearchRecyclerAdapter
 import com.asimodabas.src_team.databinding.FragmentSearchBinding
 import com.asimodabas.src_team.model.SrcSearch
+import com.asimodabas.src_team.toastMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -28,7 +29,6 @@ class SearchFragment : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: SearchRecyclerAdapter
     private var searchs = arrayListOf<SrcSearch>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +51,26 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (Constants.selectedCountry == "Istanbul") {
+            // istanbul islemleri
+            updateUiForSelectedCountry("Istanbul")
+            println("istanbul")
+        } else {
+            // elazigin islemleri
+            updateUiForSelectedCountry("Elazig")
+            println("elazig")
+        }
+
+
+    }
+
+    private fun updateUiForSelectedCountry(country: String) {
         adapter = SearchRecyclerAdapter()
         binding.searchRecycler.adapter = adapter
         binding.searchRecycler.layoutManager = LinearLayoutManager(requireContext())
 
-        swipeRefresh()
-        getData()
+        swipeRefresh(country)
+        getData(country)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -72,20 +86,18 @@ class SearchFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    fun getData() {
-        firestore.collection(Constants.SEARCH).addSnapshotListener { value, error ->
+    private fun getData(country: String) {
+        firestore.collection(Constants.SEARCH).whereEqualTo("Adres", country)
+            .addSnapshotListener { value, error ->
             if (error != null) {
-                Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT).show()
             } else {
                 if (value != null) {
                     if (value.isEmpty) {
                         Toast.makeText(
                             requireContext(), R.string.no_records_found,
                             Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        ).show()
                     } else {
 
                         val documents = value.documents
@@ -104,6 +116,7 @@ class SearchFragment : Fragment() {
 
                             searchs.add(searcher)
                             adapter.searchs = searchs
+                            adapter.notifyDataSetChanged()
                         }
                     }
                 }
@@ -111,13 +124,10 @@ class SearchFragment : Fragment() {
         }
     }
 
-    fun swipeRefresh() {
+    private fun swipeRefresh(country: String) {
         binding.swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(
-                requireContext(), R.string.page_refreshed,
-                Toast.LENGTH_SHORT
-            ).show()
-
+            requireContext().toastMessage(requireContext().getString(R.string.page_refreshed))
+            getData(country)
             binding.swipeToRefresh.isRefreshing = false
         }
     }

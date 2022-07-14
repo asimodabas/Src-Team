@@ -73,7 +73,9 @@
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_thirdFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/thirdFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/advertFragment"

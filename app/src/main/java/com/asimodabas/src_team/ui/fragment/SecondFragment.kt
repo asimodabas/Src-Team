@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentSecondBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -39,11 +40,13 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button2.setOnClickListener {
+            Constants.selectedCountry = "Elazig"
             val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
 
         binding.button3.setOnClickListener {
+            Constants.selectedCountry = "Istanbul"
             val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
