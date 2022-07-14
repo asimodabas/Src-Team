@@ -46,7 +46,6 @@ class ThirdFragment : Fragment() {
         binding.findImageView.setOnClickListener {
             val action = ThirdFragmentDirections.actionThirdFragmentToSearchFragment()
             findNavController().navigate(action)
-
         }
     }
 
@@ -55,7 +54,6 @@ class ThirdFragment : Fragment() {
             val action = ThirdFragmentDirections.actionThirdFragmentToProfileFragment()
             findNavController().navigate(action)
         } else if (item.itemId == R.id.logOut_item) {
-
             auth.signOut()
             val action = ThirdFragmentDirections.actionThirdFragmentToLoginFragment()
             findNavController().navigate(action)

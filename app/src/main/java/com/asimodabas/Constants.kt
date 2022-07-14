@@ -8,5 +8,5 @@ object Constants {
     const val USERS = "Users"
     const val SEARCH = "Search"
 
-
+    var selectedCountry = "Elazig"
 }
