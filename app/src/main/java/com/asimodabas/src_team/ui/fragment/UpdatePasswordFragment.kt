@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentUpdatePasswordBinding
+import com.asimodabas.src_team.toastMessage
 import com.asimodabas.src_team.ui.activity.MainActivity
 import com.asimodabas.src_team.viewmodel.UpdatePasswordViewModel
 import com.google.firebase.auth.EmailAuthProvider
@@ -46,11 +47,7 @@ class UpdatePasswordFragment : Fragment() {
                 val newPasswordAgain = binding.editTextNewPasswordAgain.text.toString()
                 val oldPassword = binding.editTextOldPassword.text.toString()
                 if (oldPassword == newPassword) {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.please_enter_different_password,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().toastMessage(requireContext().getString(R.string.please_enter_different_password))
                 } else {
                     if (newPassword == newPasswordAgain) {
                         val credential = EmailAuthProvider
@@ -63,11 +60,11 @@ class UpdatePasswordFragment : Fragment() {
                                 viewModel.updatePasswordData.observe(viewLifecycleOwner) { data ->
                                     data?.let {
                                         if (it) {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                R.string.password_changed,
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                            requireContext().toastMessage(
+                                                requireContext().getString(
+                                                    R.string.password_changed
+                                                )
+                                            )
                                             viewModel.signOut()
                                             observeDataSignOut()
                                         }
@@ -88,16 +85,11 @@ class UpdatePasswordFragment : Fragment() {
                             ).show()
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.password_must_match,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        requireContext().toastMessage(requireContext().getString(R.string.password_must_match))
                     }
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().toastMessage(requireContext().getString(R.string.fill_in_the_blanks))
             }
         }
     }

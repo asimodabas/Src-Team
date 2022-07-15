@@ -28,6 +28,7 @@ import androidx.navigation.fragment.findNavController
 import com.asimodabas.Constants.IMAGE_NAME
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentCreateBinding
+import com.asimodabas.src_team.toastMessage
 import com.asimodabas.src_team.viewmodel.CreateViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
@@ -112,7 +113,7 @@ class CreateFragment : Fragment() {
                     goSecond()
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.select_picture, Toast.LENGTH_SHORT).show()
+                requireContext().toastMessage(requireContext().getString(R.string.select_picture))
             }
         }
         binding.loginTextView.setOnClickListener {
@@ -136,8 +137,7 @@ class CreateFragment : Fragment() {
                 viewModel.registerToApp(email, password, name, surname, selectedImage)
                 observeData()
             } else {
-                Toast.makeText(requireContext(), R.string.password_must_match, Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().toastMessage(requireContext().getString(R.string.password_must_match))
             }
         } else {
             Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT).show()

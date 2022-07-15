@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentAdvertBinding
+import com.asimodabas.src_team.toastMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -92,12 +93,7 @@ class AdvertFragment : Fragment() {
                 }
 
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.blanks_completely,
-                    Toast.LENGTH_LONG
-                ).show()
-
+                requireContext().toastMessage(requireContext().getString(R.string.blanks_completely))
             }
         }
         binding.locationButton.setOnClickListener {
