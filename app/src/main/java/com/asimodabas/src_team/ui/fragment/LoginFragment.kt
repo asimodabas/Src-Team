@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentLoginBinding
+import com.asimodabas.src_team.toastMessage
 import com.asimodabas.src_team.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -56,8 +57,7 @@ class LoginFragment : Fragment() {
                 viewModel.loginToApp(email, password)
                 observeData()
             } else {
-                Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().toastMessage(requireContext().getString(R.string.fill_in_the_blanks))
             }
         }
 

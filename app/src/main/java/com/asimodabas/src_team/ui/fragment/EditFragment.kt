@@ -30,6 +30,7 @@ import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.DeleteAccountConfirmDialogBinding
 import com.asimodabas.src_team.databinding.FragmentEditBinding
 import com.asimodabas.src_team.model.SrcProfile
+import com.asimodabas.src_team.toastMessage
 import com.asimodabas.src_team.ui.activity.MainActivity
 import com.asimodabas.src_team.viewmodel.EditViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -131,8 +132,7 @@ class EditFragment : Fragment() {
                     observeUpdateProfile()
                 }
             } else {
-                Toast.makeText(requireContext(), R.string.fill_in_the_blanks, Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().toastMessage(requireContext().getString(R.string.fill_in_the_blanks))
             }
         }
 
@@ -168,11 +168,7 @@ class EditFragment : Fragment() {
                                 viewModel.deleteAccountError.observe(viewLifecycleOwner) { error ->
                                     error?.let {
                                         if (it) {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                R.string.try_again_later,
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                            requireContext().toastMessage(requireContext().getString(R.string.try_again_later))
                                         }
                                     }
                                 }
@@ -181,11 +177,7 @@ class EditFragment : Fragment() {
                                 ) { confirm ->
                                     confirm?.let {
                                         if (it) {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                R.string.deletion_success,
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                            requireContext().toastMessage(requireContext().getString(R.string.deletion_success))
                                             val intent = Intent(
                                                 requireActivity(),
                                                 MainActivity::class.java
@@ -205,19 +197,11 @@ class EditFragment : Fragment() {
                                 }
                             } else {
                                 println(task.exception)
-                                Toast.makeText(
-                                    requireContext(),
-                                    R.string.try_again_later,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                requireContext().toastMessage(requireContext().getString(R.string.try_again_later))
                             }
                         }
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.fill_in_the_blanks,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        requireContext().toastMessage(requireContext().getString(R.string.fill_in_the_blanks))
                     }
                 }
                 dialog.show()
@@ -238,8 +222,7 @@ class EditFragment : Fragment() {
         viewModel.changesSaved.observe(viewLifecycleOwner) { isSaved ->
             isSaved?.let {
                 if (it) {
-                    Toast.makeText(requireContext(), R.string.changes_saved, Toast.LENGTH_SHORT)
-                        .show()
+                    requireContext().toastMessage(requireContext().getString(R.string.changes_saved))
                     val action =
                         EditFragmentDirections.actionEditFragmentToProfileFragment()
                     findNavController().navigate(action)
@@ -277,7 +260,7 @@ class EditFragment : Fragment() {
                     }
 
                 } else {
-                    Toast.makeText(requireContext(), "Hata", Toast.LENGTH_SHORT).show()
+                    requireContext().toastMessage("Hata")
                 }
             }
         }

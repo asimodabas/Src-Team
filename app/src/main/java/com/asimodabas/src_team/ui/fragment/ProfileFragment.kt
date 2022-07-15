@@ -14,6 +14,7 @@ import com.asimodabas.Constants
 import com.asimodabas.src_team.R
 import com.asimodabas.src_team.databinding.FragmentProfileBinding
 import com.asimodabas.src_team.model.SrcProfile
+import com.asimodabas.src_team.toastMessage
 import com.asimodabas.src_team.viewmodel.ProfileViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -102,7 +103,7 @@ class ProfileFragment : Fragment() {
                         )
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Hata", Toast.LENGTH_LONG).show()
+                    requireContext().toastMessage("Hata")
                 }
             }
         }
