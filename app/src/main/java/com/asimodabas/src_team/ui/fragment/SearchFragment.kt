@@ -60,8 +60,6 @@ class SearchFragment : Fragment() {
             updateUiForSelectedCountry("Elazig")
             println("elazig")
         }
-
-
     }
 
     private fun updateUiForSelectedCountry(country: String) {

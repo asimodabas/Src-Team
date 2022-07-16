@@ -49,8 +49,16 @@ class AdvertFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.advSearchButton.setOnClickListener {
+        if (Constants.selectedCountry == "Istanbul") {
+            // istanbul islemleri
+            binding.editTextTextPersonName2.setText("Istanbul")
+        } else {
+            // elazigin islemleri
+            binding.editTextTextPersonName2.setText("Elazig")
+            println("elazig")
+        }
 
+        binding.advSearchButton.setOnClickListener {
             if (
                 binding.editTextTextPersonName2.text.toString() != "" &&
                 binding.editTextTextPersonName4.text.toString() != "" &&
