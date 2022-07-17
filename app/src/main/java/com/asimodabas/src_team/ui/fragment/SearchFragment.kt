@@ -73,13 +73,10 @@ class SearchFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action = SearchFragmentDirections.actionSearchFragmentToProfileFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_searchFragment_to_profileFragment)
         } else if (item.itemId == R.id.logOut_item) {
-
             auth.signOut()
-            val action = SearchFragmentDirections.actionSearchFragmentToLoginFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_searchFragment_to_loginFragment)
         }
         return super.onOptionsItemSelected(item)
     }

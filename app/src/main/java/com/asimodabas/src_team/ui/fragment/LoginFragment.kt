@@ -30,8 +30,8 @@ class LoginFragment : Fragment() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val action = LoginFragmentDirections.actionLoginFragmentToSecondFragment()
-            findNavController().navigate(action)
+
+            findNavController().navigate(R.id.action_loginFragment_to_secondFragment)
         }
     }
 
@@ -72,7 +72,6 @@ class LoginFragment : Fragment() {
                 if (value) {
                     activity?.let {
                         findNavController().navigate(R.id.action_loginFragment_to_secondFragment)
-
                     }
                 }
             }

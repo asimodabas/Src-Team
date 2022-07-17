@@ -90,10 +90,7 @@ class AdvertFragment : Fragment() {
                         binding.editTextTextPersonName5.setText("")
                         binding.editTextTextPersonName6.setText("")
 
-                        val action =
-                            AdvertFragmentDirections.actionAdvertFragmentToSearchFragment()
-                        findNavController().navigate(action)
-
+                        findNavController().navigate(R.id.action_advertFragment_to_searchFragment)
                     }.addOnFailureListener {
                         Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
                             .show()
@@ -105,23 +102,19 @@ class AdvertFragment : Fragment() {
             }
         }
         binding.locationButton.setOnClickListener {
-            val action =
-                AdvertFragmentDirections.actionAdvertFragmentToMapsActivity()
-            findNavController().navigate(action)
+
+            findNavController().navigate(R.id.action_advertFragment_to_mapsActivity)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action =
-                AdvertFragmentDirections.actionAdvertFragmentToProfileFragment()
-            findNavController().navigate(action)
+
+            findNavController().navigate(R.id.action_advertFragment_to_profileFragment)
         } else if (item.itemId == R.id.logOut_item) {
 
             auth.signOut()
-            val action =
-                AdvertFragmentDirections.actionAdvertFragmentToLoginFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_advertFragment_to_loginFragment)
         }
         return super.onOptionsItemSelected(item)
     }

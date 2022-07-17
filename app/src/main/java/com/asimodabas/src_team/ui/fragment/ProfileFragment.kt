@@ -66,9 +66,7 @@ class ProfileFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.logOut_item) {
             auth.signOut()
-            val action =
-                ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
         return super.onOptionsItemSelected(item)
     }

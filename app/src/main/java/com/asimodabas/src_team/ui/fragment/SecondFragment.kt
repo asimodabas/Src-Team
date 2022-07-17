@@ -41,26 +41,20 @@ class SecondFragment : Fragment() {
 
         binding.button2.setOnClickListener {
             Constants.selectedCountry = "Elazig"
-            val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
         }
-
         binding.button3.setOnClickListener {
             Constants.selectedCountry = "Istanbul"
-            val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.account_item) {
-            val action = SecondFragmentDirections.actionSecondFragmentToProfileFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_secondFragment_to_profileFragment)
         } else if (item.itemId == R.id.logOut_item) {
-
             auth.signOut()
-            val action = SecondFragmentDirections.actionSecondFragmentToLoginFragment()
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_secondFragment_to_loginFragment)
         }
         return super.onOptionsItemSelected(item)
     }
