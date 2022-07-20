@@ -12,18 +12,6 @@
         android:background="@drawable/background"
         tools:context=".ui.fragment.AdvertFragment">
 
-        <Button
-            android:id="@+id/locationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/edit_background"
-            android:text="konum ekle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
-
         <TextView
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="250dp"
@@ -41,6 +29,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_background"
+            android:text="konum ekle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
@@ -50,11 +50,12 @@
             android:background="@drawable/edit_background"
             android:ems="10"
             android:hint="Tarih"
-            android:inputType="textPersonName"
+            android:inputType="date"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+
             app:layout_constraintTop_toBottomOf="@+id/locationButton" />
 
         <EditText
@@ -65,7 +66,7 @@
             android:background="@drawable/edit_background"
             android:ems="10"
             android:hint="Saat"
-            android:inputType="textPersonName"
+            android:inputType="time"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -82,10 +83,10 @@
             android:textAllCaps="true"
             android:textColor="#000000"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextTextPersonName5"
@@ -97,10 +98,9 @@
             android:hint="Aranan Aktivite"
             android:inputType="textPersonName"
             android:textAlignment="center"
-
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
         <EditText
