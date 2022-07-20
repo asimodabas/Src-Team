@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asimodabas.Constants
@@ -15,6 +16,8 @@ import com.asimodabas.src_team.adapter.SearchRecyclerAdapter
 import com.asimodabas.src_team.databinding.FragmentSearchBinding
 import com.asimodabas.src_team.model.SrcSearch
 import com.asimodabas.src_team.toastMessage
+import com.asimodabas.src_team.viewmodel.EditViewModel
+import com.asimodabas.src_team.viewmodel.SearchViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,6 +32,7 @@ class SearchFragment : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: SearchRecyclerAdapter
     private var searchs = arrayListOf<SrcSearch>()
+    private lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +54,8 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
 
         if (Constants.selectedCountry == "Istanbul") {
             // istanbul islemleri
